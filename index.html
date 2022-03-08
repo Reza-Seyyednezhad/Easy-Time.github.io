@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Time</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css">
+    <script src="https://unpkg.com/popper.js@1"></script>
+    <script src="https://unpkg.com/tippy.js@5"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="body">
+        <header class="header">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand header-navbar-left" href="#"><img src="images/New Project-min.jpg"
+                            alt=""></a>
+                    <button class="navbar-toggler text-warning bg-warning" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon "></span>
+                    </button>
+                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item header-navbar-center-menu-item">
+                                <a class="nav-link header-navbar-center-menu-item-link" aria-current="page" href="#"
+                                    id="Home"><i class="bi bi-house"></i>EASY TIME</a>
+                            </li>
+                            <li class="nav-item header-navbar-center-menu-item">
+                                <a class="nav-link header-navbar-center-menu-item-link" aria-current="page" href="#"><i
+                                        class="bi bi-suit-heart"></i>DONATE</a>
+                            </li>
+                            <li class="nav-item header-navbar-center-menu-item">
+                                <a class="nav-link header-navbar-center-menu-item-link" aria-current="page" href="#"
+                                    id="thankSection"><i class="bi bi-hand-thumbs-up"></i>THANKS</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="toolsBar">
+            <button class="btn btn-primary rounded-circle toolsBar-btn" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="toolsBtn-tooltips"><i
+                    class="bi bi-tools"></i></button>
+
+            <div class="offcanvas offcanvas-end sidebar-section" tabindex="-1" id="offcanvasRight"
+                aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header sidebar-section-top">
+                    <h5 id="offcanvasRightLabel">TOOLS</h5>
+                    <button type="button" class="btn-close text-reset rounded-circle" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body sidebar-section-center">
+                    <div class="sidebar-section-center-list">
+                        <h2 class="sidebar-section-center-list-item">
+                            <a href="#" class="user">
+                                <img src="images/New Project-min.jpg" class="user-image" alt="">
+                            </a>
+                        </h2>
+                        <h2 class="sidebar-section-center-list-item"><a href="#" id="toDoSec"
+                                class="sidebar-section-center-list-item-link">TODO</a></h2>
+                        <h2 class="sidebar-section-center-list-item"><a href="#" id="stopwatchSec"
+                                class="sidebar-section-center-list-item-link">STOPWATCH</a></h2>
+                        <h2 class="sidebar-section-center-list-item"><a href="#" id="chartSec"
+                                class="sidebar-section-center-list-item-link">CHART</a></h2>
+                        <h2 class="sidebar-section-center-list-item"><a href="#" id="logsSec"
+                                class="sidebar-section-center-list-item-link">LOGS</a></h2>
+                    </div>
+                    <h5 class="timeDisplay"></h5>
+                    <h5 class="dateDisplay"></h5>
+                    <a href="#" class="content-link"><i class="bi bi-telegram"></i>ReZa_Sn7901</a>
+                </div>
+
+            </div>
+        </div>
+        <main class="main">
+            <div class="intro-section main-section">
+                <div class="intro-section-top">
+                    <h1>&hearts; WELLCOME &hearts;</h1>
+                    <hr>
+                    <h3>
+                        <strong>Time management is the ability to use your time productively and efficiently. You could
+                            also think of it as the art of having time to do everything that you need, without feeling
+                            stressed about it. It sounds simple, but it is much harder in practice. This page explains
+                            some of the principles behind good time management.</strong>
+                    </h3>
+                </div>
+                <hr>
+                <div class="intro-section-bottom">
+                    <h1> CONTACT </h1>
+                    <hr>
+                    <div class="intro-section-bottom-social">
+                        <a href="https://www.instagram.com/reza.sn79/" class="social-items"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="https://www.facebook.com/reza.seyyed.1" class="social-items"><i
+                                class="bi bi-facebook"></i></a>
+                        <a href="https://twitter.com/RezaSeyyed1" class="social-items"><i class="bi bi-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/reza-seyyednezhad-516745210/" class="social-items"><i
+                                class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div class="todo-section main-section">
+
+                <h1 class="todo-section-header col-12">To Do</h1>
+                <hr>
+                <div class="todo-section-main row">
+                    <div class="col-md-5 todo-section-main-left">
+                        <h2><a href="#" class="newTask-collapse" id="newTaskCollapse"><i class="bi bi-plus-circle"></i> NEW TASK</a></h2>
+                        <hr>
+                        <div class="todo-section-main-left-body">
+                            <input type="text" class="todo-section-main-left-body-inputs todo-task" id="toDoSubject"
+                                placeholder="TASK NAME ...">
+                            <input type="date" class="todo-section-main-left-body-inputs todo-Date" id="toDoDate"
+                                placeholder="DATE">
+                            <input type="time" class="todo-section-main-left-body-inputs todo-time" id="toDoTime"
+                                placeholder="TIME">
+                            <div class="todo-section-main-left-body-inputs todo-status">
+                                <select id="taskStatus" name="taskstatus">
+                                    <option value="Do Later">Do Later</option>
+                                    <option value="Doing">Doing</option>
+                                    <option value="Done">Done</option>
+                                </select>
+                            </div>
+                            <textarea name="toDoSectionName" id="toDoSecTextArea"
+                                class="todo-section-main-left-body-inputs" style="resize: none; margin-bottom: 20px;"
+                                cols="35" rows="1" placeholder="ABOUT TASK (OPTIONAL)"></textarea>
+                            <a href="#" id="todo-submit" class="btn btn-outline-warning newTask-btn">SUBMIT TASK</a>
+                            <a href="#" id="todo-save-to-cookie" class="btn btn-outline-warning newTask-btn">SAVE IN
+                                BROWSER</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col-md-7 todo-section-main-right">
+                        <h2>HISTORY</h2>
+                        <hr>
+                        <div class="todoSectionHistory p-2"> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="stopwatch-section main-section">
+                <h1 class="stopwatch-section-header col-12">Stopwatch</h1>
+                <hr>
+                <div class="stopwatch-section-main">
+                    <div class="stopwatch-section-main-top">
+                        <div class="timer">00:00:00</div>
+                        <input type="text" id="stopwatch-section-input" placeholder="NAME">
+                    </div>
+                    <hr>
+                    <div class="stopwatch-section-main-center">
+                        <div class="control-btns">
+                            <button class="btn btn-outline-success start-btn" onclick="startTimer()"
+                                id="start">START</button>
+                            <button class="btn btn-outline-danger stop-btn" onclick="stopTimer()"
+                                id="stop">STOP</button>
+
+                            <button class="btn btn-outline-light reset-btn" onclick="resetTimer()"
+                                id="reset">RESET</button>
+                            <button class="btn btn-outline-warning save-btn" onclick="saveTimer()"
+                                id="save">SAVE</button>
+                            <button class="btn btn-outline-info save-log-btn" onclick="saveLogTimer()" id="saveLog">SAVE
+                                IN BROWSER</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="stopwatch-section-main-bottom">
+                        <div class="timer-logs">
+                            <h1>TIMER LOGS</h1>
+                            <div class="logs-list"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-section main-section">
+                <div class="chart-section-header">
+                    <h1>Chart</h1>
+                    <a href="#" onclick="DataConfig()" class="btn btn-outline-warning">Data Config & Draw Chart</a>
+                    <hr>
+                </div>
+                <hr>
+                <div class="chart-section-main">
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="log-section main-section">
+                <h1 class="log-section-header">LOGS (HISTORIES) </h1>
+                <a href="#" class="btn btn-outline-success load-logs-btn" onclick="GetTaskData()">LOAD TASKS LOGS</a>
+                <a href="#" class="btn btn-outline-success load-logs-btn" onclick="GetTimerData()">LOAD TIMER LOGS</a>
+                <hr>
+                <div class="log-section-main">
+                    <div class="log-section-main-task">
+                        <h1 class="log-section-main-task-header col-12">TASKS </h1>
+                        <hr>
+                        <div class="log-section-main-task-main row">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="log-section-main-stopwatch">
+                        <h1 class="log-section-main-stopwatch-header col-12">TIMER </h1>
+                        <hr>
+                        <div class="log-section-main-stopwatch-main row">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="thanks-section main-section">
+                <h2> THANKS FOR: </h2>
+                <div class="thanks-section-main">
+                    <div class="thanks-section-main-body">
+                        <h3><i class="devicon-javascript-plain colored"></i> JAVASCRIPT LIBRARY & FRAMEWORK:</h3>
+                        <ul>
+                            <li><a href="https://jquery.com/">JQUERY</a></li>
+                            <li><a href="https://sweetalert.js.org/guides/">SWEETALERT</a></li>
+                            <li><a href="https://momentjs.com/">MOMENT.JS</a></li>
+                            <li><a href="https://www.chartjs.org/">CHART.JS</a></li>
+                            <li><a href="https://atomiks.github.io/tippyjs/v5/getting-started/">TIPPY.JS</a></li>
+                        </ul>
+                    </div>
+                    <div class="thanks-section-main-body">
+                        <h3><i class="devicon-css3-plain-wordmark colored"></i> CSS LIBRARY & FRAMEWORK:</h3>
+                        <ul>
+                            <li><a href="https://getbootstrap.com/">BOOTSTRAP</a></li>
+                            <li><a href="https://sass-lang.com/">SASS(SCSS)</a></li>
+                            <li><a href="https://www.w3schools.com/css/css3_flexbox.asp">FLEXBOX</a></li>
+                        </ul>
+                    </div>
+                    <div class="thanks-section-main-body">
+                        <h3><i class="devicon-devicon-plain colored"></i></i>ICONS:</h3>
+                        <ul>
+                            <li><a href="https://devicon.dev/">DEVICON</a></li>
+                            <li><a href="https://icons.getbootstrap.com/">BOOTSTRAP</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
