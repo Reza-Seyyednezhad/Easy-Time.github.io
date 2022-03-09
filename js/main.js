@@ -303,7 +303,7 @@ function saveLogTimer() {
     let data = getCookie("stopwatchData");
     let stopwatchdata = JSON.stringify(timerData);
     // alert(taskdata)
-    if (data != "" && data != [] && data != null) {
+    if (data != "" && data != [] && data != null && data != '[]') {
         swal({
             title: "Do you want to UPDATE data?",
             text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -322,7 +322,7 @@ function saveLogTimer() {
                 }
             });
     } else {
-        if (stopwatchdata != "" && stopwatchdata != null && stopwatchdata != []) {
+        if (stopwatchdata != "" && stopwatchdata != null && stopwatchdata != [] && stopwatchdata != '[]')  {
             setCookie("stopwatchData", stopwatchdata, 365);
             swal({
                 title: "SUCCESSFUL.",
