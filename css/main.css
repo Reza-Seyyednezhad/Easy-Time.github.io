@@ -993,6 +993,7 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: rgba(241, 208, 10, 0.7);
+  flex-wrap:wrap;
 }
 
 .body .main .log-section-main-task-main-item .todo-divider {
