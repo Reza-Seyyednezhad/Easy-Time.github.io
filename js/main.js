@@ -132,7 +132,7 @@ $('#todo-submit').on('click', function (e) {
     } else {
         // let txt = `task name: ${taskName}\ntask time: ${taskTime}\ntaskdescribe: ${taskDescribe}`;
         // alert(txt)
-        let specialID = `${moment().minute()}-${moment().second()}-${moment().millisecond()}`;
+        let specialID = `${moment().second()}${moment().millisecond()}`;
         // alert(specialID)
         let addTask =
             `<div class="todoItem row">
