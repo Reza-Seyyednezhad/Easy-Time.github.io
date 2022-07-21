@@ -1,0 +1,241 @@
+
+body{
+    min-height: 100vh;
+    background: url("../images/nathan-anderson-iYO-EGosrCo-unsplash-min.jpg") no-repeat center;
+    background-size: cover;
+}
+.body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    
+    // .header{
+    //     width: 100%;
+    //     padding-top: 10px;
+    //     @include flexLayout;
+    //     justify-content: space-around;
+    //     text-align: center;
+    //     position: relative;
+    //     img{
+    //         width: 50px;
+    //         height: 50px;
+    //         object-fit: cover;
+    //         border: 5px solid yellow;
+    //         box-shadow: 0 0 5px 5px orange;
+    //         text-align: center;
+    //         transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    //         &:hover{
+    //             box-shadow: 0 0 15px 15px orange;
+    //         }
+    //     }
+    // }
+    .toolsBar{
+        position: relative;
+        &-btn{
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 5;
+            width: 50px;
+            height: 50px;
+            img{
+                @include area;
+                object-fit: cover;
+                box-shadow: 0 0 5px 5px orange;
+                transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                &:hover{
+                    box-shadow: 0 0 10px 10px orange;
+                }
+            }
+        }
+        .sidebar-section{
+            background: url("../images/5443851.jpg") no-repeat center;
+            background-size: cover;
+            &-top{
+                button{
+                    background-color: $var-color-3;
+                }
+                h5{
+                    color: $var-color-3;
+                    font-size: 1rem;
+                    font-weight: 900
+                }
+            }
+            &-center{
+                @include flexLayout;
+                flex-direction: column;
+                justify-content: space-between;
+                text-align: center;
+                width: 100%;
+                margin: 0 auto;
+                &-list{
+                    width: 100%;
+                    list-style: none;
+                    height: 80%;
+                    @include flexLayout;
+                    flex-direction: column;
+                    text-align: center;
+                    margin: 0 auto;
+                    padding: 10px;
+                    &-item{
+                        @include flexLayout;
+                        width: 100%;
+                        text-align: center;
+                        margin: 0 auto;
+                        .user{
+                            width: 90px;
+                            height: 90px;
+                            @include flexLayout;
+                            margin-bottom: 20px;
+                            transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                            cursor: grab;
+                            &:hover{
+                                transform: rotateZ(360deg)
+                            }
+                            img{
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                                border: 7px solid $var-color-3; 
+                            }
+                        }
+                        &-link{
+                            @include aLinks;
+                            margin: 5px auto;
+                            font-size: 1rem;
+                            font-weight: 900;
+                            &:hover{
+                                transform: scale(1.5)
+                            }
+                        }
+                    }
+                }
+                .timeDisplay, .dateDisplay{
+                    @include aLinks;
+                    font-size: 1rem;
+                    font-weight: 900;
+                    transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    cursor: pointer;
+                    &:hover{
+                        
+                        transform: scale(1.5)
+                    }
+                    
+                }
+                .content-link{
+                    @include aLinks;
+                    font-size: 0.8rem;
+                    font-weight: 900;
+                    letter-spacing: 3px;
+                    &:hover{
+                        transform: scale(1.5)
+                    }
+                }
+        }
+        }
+    }
+    .main{
+        position: relative;
+        @include flexLayout;
+        width: 95%;
+        text-align: justify;
+        @media screen and (max-width: $bs-size-576){
+            width: 100%;
+        }
+        height: auto;
+        margin: 50px auto;
+        &-section{
+            width: 100%;
+            display: none;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .intro-section{
+            display: block;
+            padding: 5px;
+            width: 100%;
+            &-top{
+                color: $var-color-3;
+                text-align: center;
+                @media screen and (max-width: $bs-size-768){
+                    padding: 5px;
+                }
+                h1{
+                    font-size: 1.5rem;
+                    font-weight: 900;
+                    @media screen and (max-width: $bs-size-768){
+                        font-size: 1.5rem;
+                    }
+                    @media screen and (max-width: $bs-size-425){
+                        font-size: 1.2rem;
+                    }
+                    @media screen and (max-width: $bs-size-576){
+                        font-size: 1rem;
+                    }
+                }
+                h3{
+                    text-align: justify;
+                    font-size: 1rem;
+                    letter-spacing: 3px;
+                    line-height: 5vh;
+                    @media screen and (max-width: $bs-size-768){
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+            &-bottom{
+                color: $var-color-3;
+                text-align: center;
+                height: 1px;
+                margin: 50px 0;
+                @media screen and (max-width: $bs-size-350){
+                    margin: 15px;
+                }
+                h1{
+                    font-size: 1.5rem;
+                    font-weight: 900;
+                    @media screen and (max-width: $bs-size-768){
+                        font-size: 0.8rem;
+                    }
+                    @media screen and (max-width: $bs-size-425){
+                        font-size: .6rem;
+                    }
+                    @media screen and (max-width: $bs-size-576){
+                        font-size: 0.4rem;
+                    }
+                }
+                &-social{
+                    @include flexLayout;
+                    justify-content: space-evenly;
+                    flex-wrap: wrap;
+                    width: 100%;
+                    .social-items{
+                        font-size: 1.5rem;
+                        color: $var-color-3;
+                        transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        &:hover{
+                            transform: scale(2) rotateZ(360deg);
+                        }
+                        @media screen and (max-width: $bs-size-576){
+                            font-size: 1rem;
+                        }
+                    }
+                    .instagram:hover{
+                        color: #C13584;
+                    }
+                    .facebook:hover{
+                        color: #4267B2;
+                    }
+                    .twitter:hover{
+                        color: #00acee;
+                    }
+                    .linkedin:hover{
+                        color: #0072b1;
+                    }
+                }
+            }
+        }
+    }
+}

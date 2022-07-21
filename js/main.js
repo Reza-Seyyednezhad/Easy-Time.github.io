@@ -44,7 +44,7 @@ tippy('#toolsBtn-tooltips', {
 $('#Home').on('click', function (e) {
     $('.intro-section').show('fast');
     $('.todo-section').hide('fast');
-    $('.stopwatch-section').hide('fast');
+    $('.timer-section').hide('fast');
     $('.chart-section').hide('fast');
     $('.log-section').hide('fast');
     $('.thanks-section').hide('fast');
@@ -54,7 +54,7 @@ $('#thankSection').on('click', function (e) {
     $('.thanks-section').toggle('fast');
     $('.intro-section').hide('fast');
     $('.todo-section').hide('fast');
-    $('.stopwatch-section').hide('fast');
+    $('.timer-section').hide('fast');
     $('.chart-section').hide('fast');
     $('.log-section').hide('fast');
     e.preventDefault()
@@ -63,7 +63,7 @@ $('#thankSection').on('click', function (e) {
 $('.user').on('click', function (e) {
     $('.intro-section').show('fast');
     $('.todo-section').hide('fast');
-    $('.stopwatch-section').hide('fast');
+    $('.timer-section').hide('fast');
     $('.chart-section').hide('fast');
     $('.log-section').hide('fast');
     $('.thanks-section').hide('fast');
@@ -72,16 +72,16 @@ $('.user').on('click', function (e) {
 $('#toDoSec').on('click', function (e) {
     $('.intro-section').hide('fast');
     $('.todo-section').toggle('fast');
-    $('.stopwatch-section').hide('fast');
+    $('.timer-section').hide('fast');
     $('.chart-section').hide('fast');
     $('.log-section').hide('fast');
     $('.thanks-section').hide('fast');
     e.preventDefault()
 });
-$('#stopwatchSec').on('click', function (e) {
+$('#timerSec').on('click', function (e) {
     $('.intro-section').hide('fast');
     $('.todo-section').hide('fast');
-    $('.stopwatch-section').toggle('fast');
+    $('.timer-section').toggle('fast');
     $('.chart-section').hide('fast');
     $('.log-section').hide('fast');
     $('.thanks-section').hide('fast');
@@ -90,7 +90,7 @@ $('#stopwatchSec').on('click', function (e) {
 $('#chartSec').on('click', function (e) {
     $('.intro-section').hide('fast');
     $('.todo-section').hide('fast');
-    $('.stopwatch-section').hide('fast');
+    $('.timer-section').hide('fast');
     $('.chart-section').toggle('fast');
     $('.log-section').hide('fast');
     $('.thanks-section').hide('fast');
@@ -99,7 +99,7 @@ $('#chartSec').on('click', function (e) {
 $('#logsSec').on('click', function (e) {
     $('.intro-section').hide('fast');
     $('.todo-section').hide('fast');
-    $('.stopwatch-section').hide('fast');
+    $('.timer-section').hide('fast');
     $('.chart-section').hide('fast');
     $('.log-section').toggle('fast');
     $('.thanks-section').hide('fast');
@@ -116,7 +116,16 @@ $('#logsSec').on('click', function (e) {
 $('#newTaskCollapse').on('click', function(){
     $('.todo-section-main-left-body').toggle('fast')
 })
-
+$('#todo-create').on('click', function(){
+    $('.todo-section-create').show('slow')
+    $('.todo-section-log').hide()
+    $('.todo-section-chart').hide()
+})
+$('#todo-log').on('click', function(){
+    $('.todo-section-create').hide()
+    $('.todo-section-log').show('slow')
+    $('.todo-section-chart').hide()
+})
 $('#todo-submit').on('click', function (e) {
     let taskName = $('#toDoSubject').val();
     let taskTime = $('#toDoTime').val();
@@ -135,8 +144,9 @@ $('#todo-submit').on('click', function (e) {
         let specialID = `${moment().second()}${moment().millisecond()}`;
         // alert(specialID)
         let addTask =
-            `<div class="todoItem row">
+            `<div class="todoItem row" id=${specialID}>
             <div class="todoItemLeft col-12">
+                <h2 class="todoItemID">ID: ${specialID}</h2>
                 <h2>${taskName} (${taskStatus})</h2>
                 <h5 class="TaskTimeSec" id="time-test-${specialID}">${taskDate} - ${taskTime}</h5>
             </div>
@@ -161,9 +171,54 @@ $('#todo-submit').on('click', function (e) {
     }
     e.preventDefault()
 });
+// $('.deleteTask').on('click', function(){
+//     try {
+//         inputValue = $('#TaskRemove').val()
+//         if(inputValue != ''){
+//             swal({
+//                 title: "Do you want to DELETE Task?",
+//                 text: "Once deleted, you will not be able to recover this imaginary file!",
+//                 icon: "warning",
+//                 buttons: true,
+//                 dangerMode: true,
+//             })
+//             .then((deleteSure) => {
+//                 if(deleteSure){
+//                     $(`.todoSectionHistory #${inputValue} + hr`).remove();
+//                     $(`.todoSectionHistory #${inputValue}`).remove();
+//                     $('#TaskRemove').val('')
+//                 }else{
+//                     swal({
+//                         title: "DELETE Cancelled !",
+//                         icon: "info"
+//                     })
+//                     $('#TaskRemove').val('')
+//                 }
+                
+//             })
+//         }else{
+//             swal({
+//                 // title: "INPUT ERROR!\n Enter Task Name and Task Time.",
+//                 title: 'INPUT ERROR',
+//                 icon: "error",
+//                 text: `Please Enter Task ID.`
+//             });
+//             $('#TaskRemove').val('')
+//         }        
+//     } catch (error) {
+//         swal({
+//             // title: "INPUT ERROR!\n Enter Task Name and Task Time.",
+//             title: 'INPUT ERROR',
+//             icon: "error",
+//             text: `Please Enter Task ID.`
+//         });
+//         $('#TaskRemove').val('')
+//     }
+    
+// })
 // alert(document.querySelector('.todoSectionHistory').textContent);
 $('#todo-save-to-cookie').on('click', function (e) {
-    if (document.querySelector('.todoSectionHistory').textContent != ' ' && document.querySelector('.todoSectionHistory').innerHTML != null) {
+    if (document.querySelector('.todoSectionHistory').textContent != ' ' && document.querySelector('.todoSectionHistory').textContent != '' && document.querySelector('.todoSectionHistory').innerHTML != null) {
         let data = getCookie("taskData");
         let taskdata = JSON.stringify(todoData);
         // alert(taskdata)
@@ -201,14 +256,51 @@ $('#todo-save-to-cookie').on('click', function (e) {
         }
     } else {
         swal({
-            title: "Save in History, Before!",
+            title: "Save Task, Before!",
             icon: "error",
         });
     }
 
     e.preventDefault()
 })
-// Stopwatch Section (source code: https://dev.to/gspteck/create-a-stopwatch-in-javascript-2mak#:~:text=var%20stoptime%20%3D%20true%3B%20we%20create,stopwatch%20is%20running%20or%20not.&text=if%20(stoptime%20%3D%3D%20false)%20%7B%20verify,that%20the%20stopwatch%20is%20on.&text=sec%20%3D%20sec%20%2B%201%3B%20add,and%20seconds%20becomes%200%20again.)
+// timer Section (source code: https://dev.to/gspteck/create-a-timer-in-javascript-2mak#:~:text=var%20stoptime%20%3D%20true%3B%20we%20create,timer%20is%20running%20or%20not.&text=if%20(stoptime%20%3D%3D%20false)%20%7B%20verify,that%20the%20timer%20is%20on.&text=sec%20%3D%20sec%20%2B%201%3B%20add,and%20seconds%20becomes%200%20again.)
+$('#timer-create').on('click', function(){
+    $('.timer-section-create-content').show('slow')
+    $('.timer-section-log-content').hide()
+    $('.timer-section-chart-content').hide()
+})
+$('#timer-log').on('click', function(){
+    $('.timer-section-log-content').show('slow')
+    $('.timer-section-create-content').hide()
+    $('.timer-section-chart-content').hide()
+})
+$('#timer-chart').on('click', function(){
+    $('.timer-section-chart-content').show('slow')
+    $('.timer-section-log-content').hide()
+    $('.timer-section-create-content').hide()
+})
+
+tippy('#start', {
+    content: 'START',
+    placement: 'top',
+});
+tippy('#stop', {
+    content: 'STOP',
+    placement: 'top',
+});
+tippy('#reset', {
+    content: 'RESET',
+    placement: 'top',
+});
+tippy('#save', {
+    content: 'SAVE',
+    placement: 'top',
+});
+tippy('#saveLog', {
+    content: 'SAVE IN BROWSER',
+    placement: 'top',
+});
+
 const timer = document.querySelector('.timer');
 var hr = 0;
 var min = 0;
@@ -269,39 +361,41 @@ function resetTimer() {
 // let specialID = `${moment().minute()}-${moment().second()}-${moment().millisecond()}`;
 function saveTimer() {
     stopTimer();
-    let stopwatchitem;
-    let stopwatchValue = document.querySelector('.timer').innerHTML;
-    let inputValue = document.getElementById('stopwatch-section-input').value;
-    if (stopwatchValue == '00:00:00') {
+    let timeritem;
+    let timerValue = document.querySelector('.timer').innerHTML;
+    let specialID = `${moment().second()}${moment().millisecond()}`;
+    let inputValue = document.getElementById('timer-section-input').value;
+    if (timerValue == '00:00:00') {
         swal({
-            title: "Before, Set Stopwatch Name & Take Time For Stopwatch !!!",
+            title: "Before, Set timer Name & Take Time For timer !!!",
             icon: "error",
         });
     } else {
-        // alert(document.getElementById('stopwatch-section-input').value.length)
-        stopwatchitem = {
-            "stopwatch-name": inputValue,
-            "stopwatch-time": stopwatchValue
+        // alert(document.getElementById('timer-section-input').value.length)
+        timeritem = {
+            "timer-name": inputValue,
+            "timer-time": timerValue
         }
         
-        if(document.getElementById('stopwatch-section-input').value.length == 0){
-            stopwatchitem["stopwatch-name"] = `Test-${moment().second()}${moment().millisecond()}`;
+        if(document.getElementById('timer-section-input').value.length == 0){
+            timeritem["timer-name"] = `Test-${moment().second()}${moment().millisecond()}`;
         }
-        timerData.push(stopwatchitem)
+        timerData.push(timeritem)
         let txt = `
-            <div class="logs-list-item">
-                <h3 class="logs-list-item-time"># ${stopwatchitem['stopwatch-name']}</h3>
-                <h3 class="logs-list-item-timer">${stopwatchitem['stopwatch-time']}</h3>
+            <div class="timer-logs-list-item" id=${specialID}>
+                <div class="timer-logs-list-item-id"># ${specialID}</div>
+                <div class="timer-logs-list-item-name">${timeritem['timer-name']}</div>
+                <div class="timer-logs-list-item-time">${timeritem['timer-time']}</div>
             </div>
             <hr> `;
-        document.querySelector('.logs-list').innerHTML += txt;
+        document.querySelector('.timer-logs-list').innerHTML += txt;
     }
-    $('#stopwatch-section-input').val('');
+    $('#timer-section-input').val('');
     resetTimer()
 }
 function saveLogTimer() {
-    let data = getCookie("stopwatchData");
-    let stopwatchdata = JSON.stringify(timerData);
+    let data = getCookie("timerData");
+    let timerdata = JSON.stringify(timerData);
     // alert(taskdata)
     if (data != "" && data != [] && data != null && data != '[]') {
         swal({
@@ -312,9 +406,9 @@ function saveLogTimer() {
             dangerMode: true,
         })
             .then((willUpdate) => {
-                if (willUpdate && stopwatchdata != "" && stopwatchdata != null && stopwatchdata != []) {
-                    setCookie("stopwatchData", stopwatchdata, 365);
-                    swal("Update it! Your Stopwatch times list is up to date...", {
+                if (willUpdate && timerdata != "" && timerdata != null && timerdata != []) {
+                    setCookie("timerData", timerdata, 365);
+                    swal("Update it! Your timer times list is up to date...", {
                         icon: "success",
                     });
                 } else {
@@ -322,8 +416,8 @@ function saveLogTimer() {
                 }
             });
     } else {
-        if (stopwatchdata != "" && stopwatchdata != null && stopwatchdata != [] && stopwatchdata != '[]')  {
-            setCookie("stopwatchData", stopwatchdata, 365);
+        if (timerdata != "" && timerdata != null && timerdata != [] && timerdata != '[]')  {
+            setCookie("timerData", timerdata, 365);
             swal({
                 title: "SUCCESSFUL.",
                 icon: "success",
@@ -341,7 +435,7 @@ function saveLogTimer() {
 // Logs(History)
 
 function GetTaskData() {
-    document.querySelector('.log-section-main-task-main').innerHTML = '';
+    document.querySelector('.todo-section-log-content-box-main').innerHTML = '';
     let cookieValueTasks = getCookie('taskData');
     if (cookieValueTasks != [] && cookieValueTasks != '' && cookieValueTasks != null) {
         // alert(cookieValueTasks)
@@ -350,26 +444,26 @@ function GetTaskData() {
             // console.log(datas[i])
             let taskdata = taskdatas[i];
             let txt =
-                `<div class="log-section-main-task-main-item">
-                <div class="log-section-main-task-main-item-top">
-                    <div class="log-section-main-task-main-item-top-left">
-                        <h3 class="log-section-main-task-main-item-top-left-special-id">#${taskdata['special-id']}-</h3>
-                        <h2 class="log-section-main-task-main-item-top-left-taskname">${taskdata['task-name']}</h2>
+                `<div class="todo-section-log-content-box-main-item">
+                <div class="todo-section-log-content-box-main-item-top">
+                    <div class="todo-section-log-content-box-main-item-top-left">
+                        <div class="todo-section-log-content-box-main-item-top-left-special-id">#${taskdata['special-id']}-</div>
+                        <div class="todo-section-log-content-box-main-item-top-left-taskname">${taskdata['task-name']}</div>
                     </div>
-                    <div class="log-section-main-task-main-item-top-center">
-                        <h3 class="log-section-main-task-main-item-top-center-date-time">${taskdata['task-date']} - ${taskdata['task-time']}</h3>
+                    <div class="todo-section-log-content-box-main-item-top-center">
+                        <div class="todo-section-log-content-box-main-item-top-center-date-time">${taskdata['task-date']} - ${taskdata['task-time']}</div>
                     </div>
-                    <div class="log-section-main-task-main-item-top-right">
-                        <h3 class="log-section-main-task-main-item-top-right-status">${taskdata['task-status']}</h3>
+                    <div class="todo-section-log-content-box-main-item-top-right">
+                        <div class="todo-section-log-content-box-main-item-top-right-status">${taskdata['task-status']}</div>
                     </div>
                 </div>
                 <span class="todo-divider"></span>
-                <div class="log-section-main-task-main-item-bottom">
-                    <h4 class="log-section-main-task-main-item-bottom-describe">${taskdata['task-describe']}</h4>
+                <div class="todo-section-log-content-box-main-item-bottom">
+                    <div class="todo-section-log-content-box-main-item-bottom-describe">${taskdata['task-describe']}</div>
                 </div>
             </div>
             <hr>`;
-            document.querySelector('.log-section-main-task-main').innerHTML += txt;
+            document.querySelector('.todo-section-log-content-box-main').innerHTML += txt;
         }
         swal({
             title: "SUCCESSFUL.",
@@ -383,20 +477,20 @@ function GetTaskData() {
     }
 }
 function GetTimerData() {
-    let cookieValueStopwatch = getCookie('stopwatchData');
-    document.querySelector('.log-section-main-stopwatch-main').innerHTML = '';
-    if (cookieValueStopwatch != [] && cookieValueStopwatch != '' && cookieValueStopwatch != null) {
-        let stopwatchdatas = JSON.parse(cookieValueStopwatch);
-        for (let j in stopwatchdatas) {
-            console.log(stopwatchdatas[j])
-            let stpwatchdata = stopwatchdatas[j];
+    let cookieValuetimer = getCookie('timerData');
+    document.querySelector('.log-section-main-timer-main').innerHTML = '';
+    if (cookieValuetimer != [] && cookieValuetimer != '' && cookieValuetimer != null) {
+        let timerdatas = JSON.parse(cookieValuetimer);
+        for (let j in timerdatas) {
+            console.log(timerdatas[j])
+            let stpwatchdata = timerdatas[j];
             let stptxt =
-                `<div class="log-section-main-stopwatch-main-item">
-                        <h3 class="log-section-main-stopwatch-main-item-time"># ${stpwatchdata['stopwatch-name']}</h3>
-                        <h3 class="log-section-main-stopwatch-main-item-timer">${stpwatchdata['stopwatch-time']}</h3>
+                `<div class="timer-section-main-timer-main-item">
+                        <div class="timer-section-main-timer-main-item-name"># ${stpwatchdata['timer-name']}</div>
+                        <div class="timer-section-main-timer-main-item-time">${stpwatchdata['timer-time']}</div>
                     </div>
                     <hr> `;
-            document.querySelector('.log-section-main-stopwatch-main').innerHTML += stptxt;
+            document.querySelector('.log-section-main-timer-main').innerHTML += stptxt;
         }
         swal({
             title: "SUCCESSFUL.",
@@ -409,6 +503,52 @@ function GetTimerData() {
         });
     }
 }
+
+// $('#timer-delete').on('click', function(){
+//     try {
+//         inputValue = $('#timer-section-delete-input').val()
+//         if(inputValue != ''){
+//             swal({
+//                 title: "Do you want to DELETE TIMER?",
+//                 text: "Once deleted, you will not be able to recover this imaginary file!",
+//                 icon: "warning",
+//                 buttons: true,
+//                 dangerMode: true,
+//             })
+//             .then((deleteSure) => {
+//                 if(deleteSure){
+//                     $(`.timer-logs-list #${inputValue} + hr`).remove();
+//                     $(`.timer-logs-list #${inputValue}`).remove();
+//                     $('#timer-section-delete-input').val('')
+//                 }else{
+//                     swal({
+//                         title: "DELETE Cancelled !",
+//                         icon: "info"
+//                     })
+//                     $('#timer-section-delete-input').val('')
+//                 }
+                
+//             })
+//         }else{
+//             swal({
+//                 // title: "INPUT ERROR!\n Enter Task Name and Task Time.",
+//                 title: 'INPUT ERROR',
+//                 icon: "error",
+//                 text: `Please Enter TIMER ID.`
+//             });
+//             $('#timer-section-delete-input').val('')
+//         }        
+//     } catch (error) {
+//         swal({
+//             // title: "INPUT ERROR!\n Enter Task Name and Task Time.",
+//             title: 'INPUT ERROR',
+//             icon: "error",
+//             text: `Please Enter TIMER ID.`
+//         });
+//         $('#timer-section-delete-input').val('')
+//     }
+    
+// })
 setInterval(function () {
     document.querySelector('.timeDisplay').innerHTML = moment().format('LTS');
 }, 1000)
@@ -431,7 +571,7 @@ document.querySelector('.dateDisplay').innerHTML = moment().format('ll');
 
 // !!!!!!!!!!!!!!!!!!!!!!!  Will be Done !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // chart(pie):
-//      name: cookie -> taskname in stopwatch
+//      name: cookie -> taskname in timer
 //      value: time save
 // conver HH:MM:SS to :
 //          t = 'HH:MM:SS'.split(':')
@@ -442,29 +582,32 @@ document.querySelector('.dateDisplay').innerHTML = moment().format('ll');
 //          totalMinute = sum / 60
 //          totalHour = sum / 3600
 //          ! totals___ are use in result section
-function DataConfig() {
-    let stopwatchNames = [];
-    let stopwatchTimers = [];
-    let stopwatchTimersConfig = [];
+
+$('#timerChart').on('click', function(){
+    $('#myChart').remove(); // this is my <canvas> element
+    $('#timer-section-main-chart').append('<canvas id="myChart"><canvas>');
+    let timerNames = [];
+    let timerTimers = [];
+    let timerTimersConfig = [];
     let bgColors = [];
-    let cookieValueStopwatch = getCookie('stopwatchData');
-    if (cookieValueStopwatch != [] && cookieValueStopwatch != '' && cookieValueStopwatch != null) {
-        let stopwatchdatas = JSON.parse(cookieValueStopwatch);
-        for (let j in stopwatchdatas) {
-            // console.log(stopwatchdatas[j])
-            stopwatchNames.push(stopwatchdatas[j]["stopwatch-name"])
-            stopwatchTimers.push(stopwatchdatas[j]["stopwatch-time"])
+    let cookieValuetimer = getCookie('timerData');
+    if (cookieValuetimer != [] && cookieValuetimer != '' && cookieValuetimer != null) {
+        let timerdatas = JSON.parse(cookieValuetimer);
+        for (let j in timerdatas) {
+            // console.log(timerdatas[j])
+            timerNames.push(timerdatas[j]["timer-name"])
+            timerTimers.push(timerdatas[j]["timer-time"])
 
         }
-        for (let x of stopwatchTimers) {
+        for (let x of timerTimers) {
             let t = x.split(':')
             let h2s = parseInt(t[0]) * 3600;
             let m2s = parseInt(t[1]) * 60;
             let s2s = parseInt(t[2]);
             let sumTime = h2s + m2s + s2s;
-            stopwatchTimersConfig.push(sumTime)
+            timerTimersConfig.push(sumTime)
         }
-        let dataLength = stopwatchNames.length;
+        let dataLength = timerNames.length;
         var letters = '0123456789ABCDEF';
 
         for (let c = 0; c < dataLength; c++) {
@@ -475,11 +618,11 @@ function DataConfig() {
         }
         // alert(dataLength)
         const data = {
-            labels: stopwatchNames,
+            labels: timerNames,
             color: '#F1D00A',
             datasets: [{
                 label: 'My First Dataset',
-                data: stopwatchTimersConfig,
+                data: timerTimersConfig,
                 backgroundColor: bgColors,
                 hoverOffset: 4,
 
@@ -505,6 +648,7 @@ function DataConfig() {
             document.getElementById('myChart'),
             config
         );
+        
         swal({
             title: "SUCCESSFUL.",
             icon: "success",
@@ -515,12 +659,87 @@ function DataConfig() {
             icon: "info",
         });
     }
+})
+// function DataConfig() {
+//     let timerNames = [];
+//     let timerTimers = [];
+//     let timerTimersConfig = [];
+//     let bgColors = [];
+//     let cookieValuetimer = getCookie('timerData');
+//     if (cookieValuetimer != [] && cookieValuetimer != '' && cookieValuetimer != null) {
+//         let timerdatas = JSON.parse(cookieValuetimer);
+//         for (let j in timerdatas) {
+//             // console.log(timerdatas[j])
+//             timerNames.push(timerdatas[j]["timer-name"])
+//             timerTimers.push(timerdatas[j]["timer-time"])
 
-    console.log(stopwatchNames)
-    // console.log(stopwatchTimers)
-    console.log(stopwatchTimersConfig)
-}
-// in stopwatch:
+//         }
+//         for (let x of timerTimers) {
+//             let t = x.split(':')
+//             let h2s = parseInt(t[0]) * 3600;
+//             let m2s = parseInt(t[1]) * 60;
+//             let s2s = parseInt(t[2]);
+//             let sumTime = h2s + m2s + s2s;
+//             timerTimersConfig.push(sumTime)
+//         }
+//         let dataLength = timerNames.length;
+//         var letters = '0123456789ABCDEF';
+
+//         for (let c = 0; c < dataLength; c++) {
+//             for (var i = 0; i < 6; i++) {
+//                 let color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6)
+//                 bgColors.push(color)
+//             }
+//         }
+//         // alert(dataLength)
+//         const data = {
+//             labels: timerNames,
+//             color: '#F1D00A',
+//             datasets: [{
+//                 label: 'My First Dataset',
+//                 data: timerTimersConfig,
+//                 backgroundColor: bgColors,
+//                 hoverOffset: 4,
+
+//             }]
+//         };
+//         const plugin = {
+//             id: 'custom_canvas_background_color',
+//             beforeDraw: (chart) => {
+//               const ctx = chart.canvas.getContext('2d');
+//               ctx.save();
+//               ctx.globalCompositeOperation = 'destination-over';
+//               ctx.fillStyle = 'lightGreen';
+//               ctx.fillRect(0, 0, chart.width, chart.height);
+//               ctx.restore();
+//             }
+//           };
+//         const config = {
+//             type: 'doughnut',
+//             data: data,
+//             plugins: [plugin],
+//         };
+//         const myChart = new Chart(
+//             document.getElementById('myChart'),
+//             config
+//         );
+        
+//         swal({
+//             title: "SUCCESSFUL.",
+//             icon: "success",
+//         });
+//     } else {
+//         swal({
+//             title: "YOUR TIMER HISTORY IS EMPTY !!!",
+//             icon: "info",
+//         });
+//     }
+
+//     console.log(timerNames)
+//     // console.log(timerTimers)
+//     console.log(timerTimersConfig)
+// }
+// in timer:
 //      add taskname input
 //      in end: taskname : timeSave
 //                  btn -> click -> save input value and stop timer (stopTimer()) and save time.innerHtml

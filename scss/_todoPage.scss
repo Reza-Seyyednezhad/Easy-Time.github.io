@@ -1,0 +1,505 @@
+.main{
+    text-align: center;
+    .todo-section{
+        display: none;
+        color: $var-color-4;
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
+        @media screen and (max-width: $bs-size-576){
+            width: 100%;
+            margin: 0 auto;
+        }
+        .todo-box{
+            @include mainBox;
+            @media screen and (max-width: $bs-size-576){
+                width: 100%;
+            }
+            // @include area;
+            &-content{
+                @include area;
+                header{
+                    width: 100%;
+                    margin: 10px auto;
+                    .todo-box-content-navbar{
+                        width: 100%;
+                        @include flexLayout;
+                        justify-content: space-around;
+                        &-link{
+                            @include aLinks;
+                            font-weight: 900;
+                            // &:hover{
+                            //     transform: scale(1.5);
+                            // }
+                            display: inline-block;
+                            &::after{
+                                content: '';
+                                display: block;
+                                width: 0;
+                                height: 3px;
+                                background: $var-color-1;
+                                border-radius: 10px;
+                                transition: width .3s;
+                                
+                            }
+                            &:hover::after{
+                                width: 100%;
+                                //transition: width .3s;
+                            }
+                        }
+                    }
+                }
+                main{
+                    @include area;
+                    text-align: center;
+                    .todo-section-main-content{
+                        width: 95%;
+                        height: 95%;
+                        text-align: center;
+                    }
+                    .todo-section-create{
+                        width: 80%;
+                        height: 95%;
+                        // background-color: red;
+                        text-align: center;
+                        margin: 0 auto;
+                        &-content{
+                            width: 100%;
+                            border-radius: 20px;
+                            // background: #aaa0ba;
+                            // box-shadow: inset 20px 20px 37px #44404a,
+                            //             inset -20px -20px 37px #ffffff;
+                            display: flex;
+                            align-items: center;
+                            flex-direction: column;
+                            margin: 5px auto;
+                            &-up{
+                                display: flex;
+                                width: 100%;
+                                justify-content: space-around;
+                                align-items: flex-start;
+                                flex-wrap: wrap;
+                                &-left{
+                                    min-width: 45%;
+                                    max-width: 100%;
+                                    display: flex;
+                                    flex-direction: column;
+                                    &-inputs{
+                                        color: $var-color-4;
+                                        @include inputObject;
+                                        &:focus{
+                                            outline: 0;
+                                            font-weight: 900;
+                                        }
+                                        ::placeholder{
+                                            color: $var-color-4;
+                                        }
+                                        select{
+                                            width: 100%;
+                                            border: 0;
+                                            background-color: $var-color-1;
+                                            color: $var-color-4;
+                                            text-align: center;
+                                            &:focus{
+                                                outline: 0;
+                                            }
+                                        }
+                                        @media screen and (max-width: $bs-size-768){
+                                            width: 100%;
+                                        }
+                                    }
+                                    @media screen and (max-width: $bs-size-768){
+                                        width: 100%;
+                                    }
+                                    
+                                }
+                                &-right{
+                                    min-width: 45%;
+                                    &-inputs{
+                                        @include inputObject;
+                                        color: $var-color-4;
+                                        &:focus{
+                                            outline: 0;
+                                            font-weight: 900;
+                                        }
+                                        ::placeholder{
+                                            color: $var-color-4 !important;
+                                        }
+                                    }
+                                    @media screen and (max-width: $bs-size-768){
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                            &-center{
+                                margin: 2px auto;
+                                width: 100%;
+                                text-align: center;
+                                @include flexLayout;
+                                flex-direction: column;
+                                .toDoBtns{
+                                    text-align: center;
+                                    width: 100%;
+                                    .todo-create-section-down-btn{
+                                        margin: 2px auto;
+                                        display: inline-block;
+                                        width: 49%;
+                                        font-family: $var-font-2;
+                                        border-radius: 10px;
+                                        // box-shadow: inset 7px 7px 14px #645e6e,
+                                        //             inset -7px -7px 14px #f0e2ff;
+                                        font-weight: 900;
+                                        @media screen and (max-width: $bs-size-425){
+                                            width: 100%;
+                                        }
+                                    } 
+                                }
+                                
+                                // .taskRemove{
+                                //     text-align: center;
+                                //     width: 100%;
+                                //     .todo-task{
+                                //         outline: 0;
+                                //         border: 0;
+                                //         display: inline-block;
+                                //         width: 74%;
+                                //         margin: 5px;
+                                //         border-radius: 10px;
+                                //         background: linear-gradient(225deg, #233665, #1e2d55);
+                                //         box-shadow:  -7px 7px 14px #131e37,
+                                //                     7px -7px 14px #2f4785;
+                                //         text-align: center;
+                                //         padding: 10px 5px;
+                                //     }
+                                //     .deleteTask{
+                                //         display: inline-block;
+                                //         font-weight: 900;
+                                //         width: 24%;
+                                //     }
+                                // }
+                            }
+                            &-down{
+                                width: 100%;
+                                text-align: center;
+                                @include boxStyle;
+                                overflow: auto;
+                                height: 190px;
+                                .todoItem{
+                                    width: 100%;
+                                    margin: 0 auto;
+                                    background-color: rgba($color: $var-color-3, $alpha: 0.7);
+                                    border-radius: 10px;
+                                    &ID{
+                                        font-weight: 900
+                                    }
+                                    &Left{
+                                        @include flexLayout;
+                                        justify-content: space-between;
+                                        h2{
+                                            font-style: normal;
+                                            font-weight: 900;
+                                            font-size: 1rem;
+                                            color: $var-color-1;
+                                        }
+                                        .TaskTimeSec{
+                                            font-weight: 900;
+                                            font-size: 1rem;
+                                            color: $var-color-1;
+                                        }
+                                        
+                                    }
+                                    .todo-divider{
+                                        width: 60%;
+                                        height: 2px;
+                                        border: 1px solid $var-color-3;
+                                        margin: 0 auto;
+                                    }
+                                    &Right{
+                                        p{
+                                            font-size: 1rem;
+                                            font-weight: 900;
+                                            color: $var-color-1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .todo-section-log{
+                        display: none;
+                        // background-color: green;
+                        width: 100%; 
+                        padding: 10px;
+                        text-align: center;
+                        &-content{
+                            margin: 0 auto;
+                            width: 95%;
+                            text-align: center;
+                            .load-logs-btn{
+                                display: block;
+                                width: 100%;
+                                margin: 10px 0;
+                            }
+                            &-box{
+                                @include boxStyle;
+                                width: 100%;
+                                height: 450px;
+                                overflow: auto;
+                                margin: auto;
+                                @media screen and (max-width: $bs-size-768){
+                                    width: 100%;
+                                }
+                                &-main{
+                                    width: 95%;
+                                    margin: 0 auto;
+                                    @media screen and (max-width: $bs-size-425){
+                                        width: 100%;
+                                    }
+                                    &-item{
+                                        @include boxStyle;
+                                        &-top{
+                                            width: 100%;
+                                            @include flexLayout;
+                                            justify-content: space-around;
+                                            font-weight: 700;
+                                            &-left{
+                                                display: flex;
+                                                flex-wrap: wrap;
+                                                div{
+                                                    font-size: 1.2rem;
+                                                    @media screen and (max-width: $bs-size-768){
+                                                        font-size: 0.8rem;
+                                                    }
+                                                }
+                                                &-special-id{
+                                                    color: $var-color-2;
+                                                }
+                                                &-taskname{
+                                                    color: #4245f5;
+                                                    
+                                                }
+                                            }
+                                            &-center{
+                                                div{
+                                                    font-size: 1.2rem;
+                                                    @media screen and (max-width: $bs-size-768){
+                                                        font-size: 0.8rem;
+                                                    }
+                                                }
+                                                &-date-time{
+                                                    color: #bf2e46;
+                                                }
+                                            }
+                                            &-right{
+                                                div{
+                                                    font-size: 1.2rem;
+                                                    @media screen and (max-width: $bs-size-768){
+                                                        font-size: 0.8rem;
+                                                    }
+                                                }
+                                                &-status{
+                                                    color: #c2571d;
+                                                }
+                                            }
+                                        }
+                                        &-bottom{
+                                            div{
+                                                font-size: 1.2rem;
+                                                color: $var-color-1;
+                                                @media screen and (max-width: $bs-size-768){
+                                                    font-size: 0.8rem;
+                                                }
+                                            }
+                                            width: 100%;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+            // .circle{
+            //     width: 100px;
+            //     height: 100px;
+            //     position: absolute;
+            //     border-radius: 50%;
+            //     z-index: -5;
+            // }
+            // .circle1{
+            //     top: -50px;
+            //     left: -50px;
+            //     background: rgb(9,9,121);
+            //     background: radial-gradient(circle, rgba(9,9,121,1) 55%, rgba(0,212,255,1) 100%);
+            // }
+            // .circle2{
+            //     top: -50px;
+            //     right: -50px;
+            //     background-color: green;
+            // }
+            // .circle3{
+            //     bottom: -50px;
+            //     left: -50px;
+            //     background-color: yellow;
+            // }
+            // .circle4{
+            //     bottom: -50px;
+            //     right: -50px;
+            //     background-color: blue;
+            // }
+        }
+    }
+    // .todo-section{
+    //     display: block;
+    //     padding: 2px;
+    //     color: $var-color-4;
+    //     text-align: center;
+    //     width: 100%;
+    //     @media screen and (max-width: $bs-size-576){
+    //         width: 100%;
+    //         margin: 0 auto;
+    //     }
+    //     &-header{
+    //         color: $var-color-3;
+    //         font-size: 2rem;
+    //         font-weight: 900;
+    //     }
+    //     &-main{
+    //         @include flexLayout;
+    //         align-items: center;
+    //         // flex-wrap: wrap;
+    //         text-align: center;
+    //         margin: 0 auto;
+    //         &-left{
+    //             width: 100%;
+    //             margin: 0 auto;
+    //             text-align: center;
+    //             &-body{
+    //                 display: none;
+    //                 &-inputs{
+    //                     width: 75%;
+    //                     margin: 20px auto;
+    //                     padding: 10px;
+    //                     border: 0;
+    //                     color: $var-color-3;
+    //                     letter-spacing: 5px;
+    //                     font-weight: 900;
+    //                     text-align: center;
+    //                     background-color: transparent;
+    //                     font-size: 1rem;
+    //                     @include flexLayout;
+    //                     border-radius: 10px;
+    //                     // background: #F1D00A;
+    //                     // box-shadow: inset 19px 19px 38px #b09807,
+    //                     //             inset -19px -19px 38px #ffff0d;
+    //                     transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    //                     &:focus{
+    //                         outline: none;
+    //                     }
+    //                     &:hover{
+    //                         box-shadow: 0 0 145px 15px $var-color-3;
+    //                     }
+    //                     @media screen and (max-width: $bs-size-992){
+    //                         width: 100%;
+    //                         padding: 5px;
+    //                     }
+                        
+    //                 }
+    //                 .todo-status select {
+    //                     padding: 5px;
+    //                     background-color: $var-color-3;
+    //                     color: $var-color-1;
+    //                     font-size: 1rem;
+    //                     font-weight: 900;
+    //                     width: 100%;
+    //                     text-align: center;
+    //                 }
+    //                 .todo-status select option{
+    //                     font-weight: 900;
+    //                 }
+    //                 .newTask-btn{
+    //                     font-size: 1rem;
+    //                     font-weight: 900;
+    //                     margin-bottom: 10px;
+    //                 }
+    //             }
+    //             @media screen and (max-width: $bs-size-576){
+    //                 width: 100%;
+    //             }
+    //             h2{
+    //                 .newTask-collapse{
+    //                     @include aLinks;
+    //                     @include flexLayout;
+    //                     font-size: 1.5rem;
+    //                     letter-spacing: 5px;
+    //                     font-weight: 900;
+    //                     color: $var-color-3;
+    //                     margin: auto;
+    //                 }
+                    
+    //                 @media screen and (max-width: $bs-size-576){
+    //                     width: 100%;
+    //                     padding: 5px;
+    //                 }
+    //             }
+                
+                
+    //         }
+    //         &-right{
+    //             width: 100%;
+    //             font-weight: 900;
+    //             h2{
+    //                 font-size: 1.5rem;
+    //                 letter-spacing: 5px;
+    //                 font-weight: 900;
+    //                 color: $var-color-3;
+    //             }
+                
+    //             .todoSectionHistory{
+    //                 width: 100%;
+    //                 padding: 5px;
+    //                 height: 45vh;
+    //                 overflow-y: auto;
+    //                 margin: 10px auto;
+    //                 .todoItem{
+    //                     width: 100%;
+    //                     padding: 5px;
+    //                     background-color: rgba($color: $var-color-3, $alpha: 0.7);
+    //                     border-radius: 10px;
+    //                     &Left{
+    //                         @include flexLayout;
+    //                         justify-content: space-between;
+    //                         h2{
+    //                             font-style: normal;
+    //                             font-weight: 900;
+    //                             font-size: 1rem;
+    //                             color: $var-color-1;
+    //                         }
+    //                         .TaskTimeSec{
+    //                             font-weight: 900;
+    //                             font-size: 1rem;
+    //                             color: $var-color-1;
+    //                         }
+                            
+    //                     }
+    //                     .todo-divider{
+    //                         width: 60%;
+    //                         height: 2px;
+    //                         border: 1px solid $var-color-3;
+    //                         margin: 0 auto;
+    //                     }
+    //                     &Right{
+    //                         p{
+    //                             font-size: 1rem;
+    //                             font-weight: 900;
+    //                             color: $var-color-1;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    
+}
