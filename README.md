@@ -4,5 +4,5 @@ Website:
     
     
 # About me:
-    telegram: @ReZa_Sn7901
-    instagram: reza.sn79
+    Telegram: @reza_seyyednezhad
+    Gmail: reza.seyyed1379@gmail.com
